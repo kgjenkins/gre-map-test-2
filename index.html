@@ -240,7 +240,6 @@
             if (zoom < label_min_zoom && (!lastZoom || lastZoom >= label_min_zoom)) {
                 map.eachLayer(function(layer) {
                     if (layer.getTooltip) {
-                        console.log(layer.getTooltip());
                         var toolTip = layer.getTooltip();
                         if (toolTip && reztt.test(toolTip._content)) {
                             this.map.closeTooltip(toolTip);
