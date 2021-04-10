@@ -16,7 +16,7 @@
             margin: 0;
         }
         </style>
-        <title></title>
+        <title>gre-map-test-2</title>
     </head>
     <body>
       <div style="background:#ff0 ; padding:1em">
@@ -42,6 +42,9 @@
         var map = L.map('map', {
             zoomControl:true, maxZoom:20, minZoom:1
         }).fitBounds([[28.972307439532223,-13.824270073427478],[52.575011584821425,48.169055017420575]]);
+        if (location.hash == '') {
+          location.hash = '5/39.521/15.227';
+        }
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
