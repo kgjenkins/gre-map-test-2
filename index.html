@@ -157,7 +157,7 @@
                         <td colspan="2" style="font-size:150%; font-weight:bold">' + (feature.properties['title'] !== null ? autolinker.link(feature.properties['title'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                      <td colspan="2"><a href="'+feature.properties['url']+'">View DRAFT</a></td>\
+                      <td colspan="2"><a href="'+feature.properties['url']+'" target="_blank">View DRAFT</a></td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -226,7 +226,7 @@
                         <td colspan="2" style="font-size:150%; font-weight:bold">' + (feature.properties['title'] !== null ? autolinker.link(feature.properties['title'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-            <td colspan="2"><a href="'+feature.properties['url']+'">View published article</a></td>\
+            <td colspan="2"><a href="'+feature.properties['url']+'" target="_blank">View published article</a></td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
