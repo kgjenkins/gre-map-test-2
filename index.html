@@ -161,6 +161,7 @@
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            layer.bindTooltip('<div style="color:#fa0; background:#000000aa; padding:0 3px; font-size:10pt; font-family:Arial, sans-serif" class="zoomtooltip">'+feature.properties['title']+'</div>', { permanent:true });
         }
 
         function style_romangardens_4_0(feature) {
@@ -229,7 +230,36 @@
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            layer.bindTooltip('<div style="color:#0f0; background:#000000aa; padding:0 3px; font-size:10pt; font-family:Arial, sans-serif" class="zoomtooltip">'+feature.properties['title']+'</div>', { permanent:true });
         }
+        var label_min_zoom = 9;
+        var lastZoom;// = map.getZoom();
+        var reztt = new RegExp('zoomtooltip');
+        map.on('zoomend', function() {
+            var zoom = map.getZoom();
+            if (zoom < label_min_zoom && (!lastZoom || lastZoom >= label_min_zoom)) {
+                map.eachLayer(function(layer) {
+                    if (layer.getTooltip) {
+                        console.log(layer.getTooltip());
+                        var toolTip = layer.getTooltip();
+                        if (toolTip && reztt.test(toolTip._content)) {
+                            this.map.closeTooltip(toolTip);
+                        }
+                    }
+                });
+            }
+            else if (zoom >= label_min_zoom && (!lastZoom || lastZoom < label_min_zoom)) {
+                map.eachLayer(function(layer) {
+                    if (layer.getTooltip) {
+                        var toolTip = layer.getTooltip();
+                        if (toolTip && reztt.test(toolTip._content)) {
+                            this.map.addLayer(toolTip);
+                        }
+                    }
+                });
+            }
+            lastZoom = zoom;
+        })
 
         function style_romangardenspublished_5_0() {
             return {
